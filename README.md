@@ -1,16 +1,19 @@
-### Hi there 👋
+```asm
+.section .data
+msg: .asciz "You: money; Me: work\n"
+len = . - msg
 
-<!--
-**ivanivanovich1/ivanivanovich1** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+.section .text
+.global _start
 
-Here are some ideas to get you started:
+_start:
+    movl $4, %eax
+    movl $1, %ebx
+    movl $msg, %ecx
+    movl $len, %edx
+    int $0x80
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+    movl $1, %eax
+    xorl %ebx, %ebx
+    int $0x80
+```
